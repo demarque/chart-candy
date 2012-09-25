@@ -1,0 +1,42 @@
+div.wrapper-chart{float:left;margin:0px 0px 40px 0px;width:100%;
+  h2{clear:both;float:left;margin:0px 0px 20px 0px;width:100%;}
+
+  div.tools{border:1px solid #dadada;border-bottom:1px solid #ccc;border-top-left-radius:8px;border-top-right-radius:8px;clear:both;float:left;height:50px;margin:0px 0px -1px 0px;padding:0px;width:100%;
+    background: #ececec;
+    background: linear-gradient(top, #F2F2F2, #ececec);
+    background: -moz-linear-gradient(top, #F2F2F2, #ececec);
+    background: -webkit-linear-gradient(top, #F2F2F2, #ececec);
+
+    div.tool{float:left;margin:10px 30px 0px 0px;}
+
+    div.holder-template{margin-left:30px;
+      ul.items{margin:0px;
+        li{padding:0px;}
+        li span.text{background-image:image-url("application/icon-charts.png");display:block;text-indent:-9999px;height:15px;margin:0px 15px;padding-left:0px;padding-right:0px;width:20px;}
+        li.table span.text{background-position:-100px 5px;}
+        li.selected.table span.text{background-position:-100px -45px;}
+      }
+    }
+
+
+    div.holder-export-xls{float:right;
+      a{padding:0px;text-indent:-9999px;
+        span{background:image-url("application/icon-excel.png") no-repeat center 5px;display:block;height:29px;width:50px;}
+      }
+    }
+  }
+
+  div.templates{width:100%;
+    div.table{clear:both;display:none;float:left;margin:0px 0px 0px 0px;overflow:hidden;width:100%;
+      table{border-left:1px solid #ddd;border-right:1px solid #ddd;width:100%;
+        tbody{
+          tr td{cursor:default;}
+          tr:hover{
+            td:first-child{border-left:10px solid #2CB547;padding-left:26px;}
+          }
+        }
+      }
+    }
+  }
+
+}

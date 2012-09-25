@@ -1,0 +1,107 @@
+div.chart-line{clear:both;float:left;width:100%;
+
+  div.tools{margin-left:60px;width:979px;
+    div.holder-step{float:right;margin-right:30px;
+      div.select-field div.current span.text{width:120px;}
+    }
+
+    div.holder-template ul.items{
+      li.chart span.text{background-position:-50px 5px;}
+      li.selected.chart span.text{background-position:-50px -45px;}
+    }
+  }
+
+  div.templates{
+    div.table{margin-left:60px;width:981px;}
+
+    div.chart{clear:both;height:350px;margin-top:-5px;padding:0px 60px 40px 60px;width:1100px;
+      svg{overflow:visible;height:100%;width:100%;
+        rect.bg{ fill:#fff; }
+
+        g.tooltip{
+          rect{border-radius:1em;fill:#fff;stroke:#ccc;}
+          text{cursor:default;fill:#555;font-family:'Arial';
+            tspan.x{font-size:1em;fill:#777;}
+            tspan.y{font-size:1em;fill:#333;}
+          }
+        }
+
+        path{fill:none;}
+
+        g.axis {shape-rendering:crispEdges;
+          line {stroke:#f1f1f1;}
+          .minor {stroke-opacity:.3;}
+          path {stroke:#e1e1e1;}
+        }
+
+        g.pointer{opacity:0;
+          circle{fill:#fff;stroke-width:2;}
+        }
+        g.pointer-1 circle{stroke:#10c7df;}
+        g.pointer-2 circle{stroke:#ffcc00;}
+        g.pointer-3 circle{stroke:#c1e443;}
+        g.pointer-4 circle{stroke:#fd41cd;}
+        g.pointer-5 circle{stroke:#11aec6;}
+        g.pointer-6 circle{stroke:#e09200;}
+        g.pointer-7 circle{stroke:#84d200;}
+        g.pointer-8 circle{stroke:#f2a1e7;}
+        g.pointer.disabled{opacity:0;}
+
+
+        g.line{display:block;width:100%;height:100%;
+          path.stroke{stroke-opacity:1;stroke-width:2;}
+          path.area{fill:none;fill-opacity:.3;}
+        }
+
+        g.line-1{
+          path.stroke{stroke:#10c7df;}
+          path.area{fill:#c7ffff;}
+        }
+        g.line-2 path.stroke{stroke:#ffcc00;}
+        g.line-3 path.stroke{stroke:#c1e443;}
+        g.line-4 path.stroke{stroke:#fd41cd;}
+        g.line-5 path.stroke{stroke:#11aec6;}
+        g.line-6 path.stroke{stroke:#e09200;}
+        g.line-7 path.stroke{stroke:#84d200;}
+        g.line-8 path.stroke{stroke:#f2a1e7;}
+
+        g.line.selected{
+          path.stroke{stroke-width:3;}
+          path.area{fill-opacity:.5;}
+        }
+
+        g.line.hidden{
+          path.stroke{stroke:#f00;}
+        }
+
+
+        g.legend{
+          rect{fill:#fafafa;fill-opacity:.6;}
+
+          g.item{cursor:pointer;
+            text{fill:#555;}
+            line{stroke-width:3;}
+          }
+          g.item:hover{
+            text{fill:#000;}
+            line{stroke-width:4;}
+          }
+          g.item.item-1 line{stroke:#10c7df;}
+          g.item.item-2 line{stroke:#ffcc00;}
+          g.item.item-3 line{stroke:#c1e443;}
+          g.item.item-4 line{stroke:#fd41cd;}
+          g.item.item-5 line{stroke:#11aec6;}
+          g.item.item-6 line{stroke:#e09200;}
+          g.item.item-7 line{stroke:#84d200;}
+          g.item.item-8 line{stroke:#f2a1e7;}
+
+          g.item.disabled{
+            text{fill:#999;}
+            line{stroke-opacity:0.1;}
+          }
+        }
+      }
+    }
+  }
+
+}
