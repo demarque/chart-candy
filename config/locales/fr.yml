@@ -1,0 +1,13 @@
+fr:
+  chart_candy:
+    base:
+      steps:
+        day: Quotidien
+        week: Hebdomadaire
+        month: Mensuel
+
+      template:
+        table: Tableau
+        chart: Diagramme
+
+      xls_export: "Exporter en Excel"

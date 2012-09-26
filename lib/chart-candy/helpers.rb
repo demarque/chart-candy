@@ -111,7 +111,7 @@ module ChartCandy::Helpers
     end
 
     def tool_export_xls(label=nil)
-      label = I18n.t('chart_candy.base.xls_export') if not label
+      label = t('base.xls_export') if not label
 
       content = link_to(content_tag(:span, label, class: 'text'), @url.gsub('.json', '.xls'), class: 'button', title: t('base.xls_export'))
 
@@ -119,11 +119,15 @@ module ChartCandy::Helpers
     end
 
     def tool_step
-      content_tag(:div, candy.select('step', [['Quotidien', 'day'], ['Hebdomadaire', 'week'], ['Mensuel', 'month']], 'month'), class: 'tool holder-step')
+      choices = ['day', 'week', 'month'].map{ |c| [t("base.steps.#{c}"), c] }
+
+      return content_tag(:div, candy.select('step', choices, 'month'), class: 'tool holder-step')
     end
 
     def tool_template
-      content_tag(:div, candy.switch('template', [['Diagramme', 'chart'],['Tableau', 'table']], 'chart'), class: 'tool holder-template')
+      choices = ['chart', 'table'].map { |c| [t("base.template.#{c}"), c] }
+
+      return content_tag(:div, candy.switch('template', choices, 'chart'), class: 'tool holder-template')
     end
 
     def method_missing(*args, &block)

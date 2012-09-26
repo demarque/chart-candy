@@ -102,8 +102,8 @@ class @ChartCandyDonut
   loadTable: () ->
     content = '<table><thead><tr><th>' + @data.label + '</th><th>' + @data.value + '</th></thead><tbody>'
     for d,i in @data.slices then content += "<tr><td>#{d.label}</td><td>#{d.value}</td></tr>"
-    content += '<tfoot><tr><td>' + @data.total.label + '</td><td>' + @data.total.value + '</td></tfoot>'
-    content += '</tbody></table>'
+    content += '</tbody><tfoot><tr><td>' + @data.total.label + '</td><td>' + @data.total.value + '</td></tfoot>'
+    content += '</table>'
 
     @holderTable.html(content)
 

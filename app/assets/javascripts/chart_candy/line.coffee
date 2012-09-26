@@ -199,11 +199,10 @@ class @ChartCandyLine
       content += "<tr><td>#{l.label_x}</td>"
       for c in @data.lines then content += "<td>#{c.data[i].y}</td>"
       content += '</tr>'
-    content += "<tfoot><tr>"
+    content += "</tbody><tfoot><tr>"
     content += '<td>' + @data.lines[0].total.label + '</td>'
     for l in @data.lines then content += '<td>' + l.total.value + '</td>'
-    content += "</tr></tfoot>"
-    content += '</tbody></table>'
+    content += "</tr></tfoot></table>"
 
     @holderTable.html(content)
 
