@@ -1,7 +1,7 @@
 Chart Candy [![Build Status](https://secure.travis-ci.org/demarque/chart-candy.png?branch=master)](http://travis-ci.org/demarque/chart-candy)
 ===============
 
-Form Candy use D3.js library to quickly render AJAX charts in your Rails project. In a minimum amount of code, you should have a functional chart, styled and good to go.
+Chart Candy use D3.js library to quickly render AJAX charts in your Rails project. In a minimum amount of code, you should have a functional chart, styled and good to go.
 
 
 Install
@@ -22,7 +22,7 @@ gem 'chart-candy'
 Usage
 -----
 
-Form Candy currently offer 3 chart types : *line*, *donut* and *counter*.
+Chart Candy currently offer 3 chart types : *line*, *donut* and *counter*.
 
 ### Line Chart
 
