@@ -44,12 +44,20 @@ class @ChartCandyLine
 
     padding = if orientation is 'bottom' then 20 else 12
 
-    axis = d3.svg.axis().scale(domain).tickSize(-size).ticks(qteTicks).orient(orientation).tickSubdivide(1).tickPadding(padding)
-    axis = axis.tickFormat(d3.time.format("%d-%m")) if nature is 'date'
+    formatNumber = d3.format(",.0f") # for formatting integers
+    formatCurrency = (d) -> formatNumber(d) + "$"
+
+    axis = d3.svg.axis()
+    axis = axis.scale(domain).tickSize(-size).ticks(qteTicks).orient(orientation).tickSubdivide(1).tickPadding(padding)
+
+    switch(nature)
+      when 'date' then axis = axis.tickFormat d3.time.format("%d-%m")
+      when 'money' then axis = axis.tickFormat formatCurrency
 
     @chart.append("svg:g").attr("class", orientation + " axis").attr("transform", "translate(#{translate[0]}, #{translate[1]})").call axis
 
     #@rotateLabel() if nature is 'date'
+
 
   drawChart: () ->
     @holderChart.html('')
