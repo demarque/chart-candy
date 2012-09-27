@@ -6,25 +6,34 @@ class ChartCandy::Builder::Line < ChartCandy::Builder::Base
     @chart.merge! axis: {}, legend: nil, lines: [], nature: 'line', tooltip: true
   end
 
-  def add_dot(dot, id, x_nature, y_nature)
-    { x: dot[x_nature],
-      y: dot[y_nature],
-      label_x: add_dot_label(id, dot[x_nature], x_nature),
-      label_y: add_dot_label(id, dot[y_nature], y_nature)
+  def add_dot(dot, id, x_name, y_name)
+    {
+      x: dot[x_name],
+      y: dot[y_name],
+      label_x: add_dot_label(id, dot[x_name], @chart[:axis][:x][:nature]),
+      label_y: add_dot_label(id, dot[y_name], @chart[:axis][:y][:nature])
     }
   end
 
   def add_dot_label(id, value, nature)
-    if nature == 'time'
-      case @chart[:step]
-        when 'day' then l(value, format: :date_long)
-        when 'week' then I18n.t('date.week') + ' ' + l(value, format: :date_long).strip
-        when 'month' then l(value, format: :date_without_day).capitalize
-        else l(value, format: :date_long)
-      end
-    else
-      value.to_s + ' ' + t("lines.#{id}.unit")
+    case nature
+      when :date then add_dot_label_date value
+      when :money then add_dot_label_money value
+      else value.to_s + ' ' + t("lines.#{id}.unit")
     end
+  end
+
+  def add_dot_label_date(date)
+    case @chart[:step]
+      when 'day' then l(date, format: :date_long)
+      when 'week' then I18n.t('date.week') + ' ' + l(date, format: :date_long).strip
+      when 'month' then l(date, format: :date_without_day).capitalize
+      else l(date, format: :date_long)
+    end
+  end
+
+  def add_dot_label_money(amount)
+    sprintf("%0.02f", amount.round(2)).gsub('.', ',') + ' $'
   end
 
   def add_line(id, original_data, options={})
@@ -37,7 +46,7 @@ class ChartCandy::Builder::Line < ChartCandy::Builder::Base
     end
 
     data = original_data.map do |d|
-      [:key_x, :key_y].each { |key| (d[options[key]] = to_money_format(d[options[key]]) if money?(key[-1,1]) }
+      [:key_x, :key_y].each { |key| d[options[key]] = to_money_format(d[options[key]]) if money?(key[-1,1]) }
       add_dot(d, id, options[:key_x], options[:key_y])
     end
 
@@ -71,6 +80,10 @@ class ChartCandy::Builder::Line < ChartCandy::Builder::Base
     @chart[:legend] = (@chart[:lines].length > 1) if @chart[:legend].nil?
   end
 
+  def date_based?
+    @chart[:axis][:x] and @chart[:axis][:x][:nature] == :date
+  end
+
   def get_total(data)
     { label: 'Total', value: data.sum{ |d| d[:y] } }
   end
@@ -85,10 +98,6 @@ class ChartCandy::Builder::Line < ChartCandy::Builder::Base
 
   def money?(key)
     @chart[:axis][key.to_sym][:nature] == :money
-  end
-
-  def time_based?
-    @chart[:axis][:x] and @chart[:axis][:x][:nature] == 'date'
   end
 
   def to_money_format(value)
