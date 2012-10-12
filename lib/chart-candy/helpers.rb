@@ -25,7 +25,7 @@ module ChartCandy::Helpers
       @id = id
       @from = from
       @to = to
-      @step = step
+      @step = step || 'month'
     end
 
     def counter(options={})
@@ -55,7 +55,7 @@ module ChartCandy::Helpers
     private
 
     def build_url(nature, options={})
-      params = { format: 'json', id: @id, nature: nature, nonce: SecureRandom.hex(20), timestamp: Time.now.utc.iso8601, version: 'v1' }
+      params = { from: @from, format: 'json', id: @id, nature: nature, nonce: SecureRandom.hex(20), step: @step, timestamp: Time.now.utc.iso8601, to: @to, version: 'v1' }
 
       options.each { |k,v| params[k] = v if not ['class', 'tools'].include? k.to_s }
 

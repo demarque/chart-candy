@@ -25,6 +25,18 @@ module ChartCandy::Builder
 
     return content.join(' ')
   end
+
+  def self.get_step_from_interval(interval)
+    days = (interval / (3600 * 24)).to_i.abs
+
+    return case days
+      when 0..5 then 'day'
+      when 6..27 then 'week'
+      when 28..88 then 'month'
+      when 89..363 then 'quarter'
+      else 'year'
+    end
+  end
 end
 
 require 'chart-candy/builder/base.rb'

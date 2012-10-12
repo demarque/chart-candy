@@ -6,6 +6,8 @@ class CandyChartsController < ApplicationController
 
   def show
     if @granted
+      set_default_to if params[:from] and not params[:to]
+
       name = (params[:id].gsub('-', '_').camelize + 'Chart')
 
       begin
@@ -41,5 +43,18 @@ class CandyChartsController < ApplicationController
     auth = ChartCandy::Authentication.new(request.url, params)
 
     @granted = (auth.valid_token? and not auth.expired?)
+  end
+
+  def set_default_to
+    if params[:nature] == 'line'
+      params[:to] = case params[:step]
+        when 'day' then (Time.now.utc - 1.day).end_of_day.iso8601
+        when 'week' then (Time.now.utc - 1.week).end_of_week.iso8601
+        when 'month' then (Time.now.utc - 1.month).end_of_month.iso8601
+        else Time.now.utc.iso8601
+      end
+    else
+      params[:to] = Time.now.utc.iso8601
+    end
   end
 end

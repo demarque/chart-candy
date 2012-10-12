@@ -23,18 +23,6 @@ class ChartCandy::Builder::Base
     return name.compact.join('-')
   end
 
-  def get_step_from_interval(interval)
-    days = (interval / (3600 * 24)).to_i.abs
-
-    return case days
-      when 0..5 then 'day'
-      when 6..27 then 'week'
-      when 28..88 then 'month'
-      when 89..363 then 'quarter'
-      else 'year'
-    end
-  end
-
   def id
     @chart[:id]
   end
@@ -53,7 +41,7 @@ class ChartCandy::Builder::Base
     @from = data.first
     @to = data.last
 
-    @chart[:step] = get_step_from_interval(data[1] - data[0]) if not @chart[:step]
+    @chart[:step] = ChartCandy::Builder.get_step_from_interval(data[1] - data[0]) if not @chart[:step]
 
     @chart[:period] = ChartCandy::Builder.period @from, @to, step: @chart[:step]
   end
