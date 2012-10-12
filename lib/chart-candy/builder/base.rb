@@ -2,8 +2,8 @@ class ChartCandy::Builder::Base
   def initialize(id, options={})
     options.reverse_merge! from: nil, to: nil, step: nil
 
-    @from = options[:from]
-    @to = options[:to]
+    @from = options[:from] ? Time.parse(options[:from]) : nil
+    @to = options[:to] ? Time.parse(options[:to]) : Time.now
 
     @chart = { id: id }
     @chart[:step] = options[:step] if options[:step]

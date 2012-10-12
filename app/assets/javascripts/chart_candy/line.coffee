@@ -195,7 +195,7 @@ class @ChartCandyLine
     @drawPointer()
     @drawTooltip()
 
-  loadData: (url) -> d3.json(url, (d) => if d then @loadTemplates d else alert 'Error loading chart')
+  loadData: (url) -> d3.json(url, (d) => if d then @loadTemplates d)
 
 
   loadTable: () ->

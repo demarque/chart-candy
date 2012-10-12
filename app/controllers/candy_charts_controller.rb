@@ -14,7 +14,7 @@ class CandyChartsController < ApplicationController
         raise "Chart Candy: You must defined #{name}"
       end
 
-      builder = "ChartCandy::Builder::#{params[:nature].camelize}".constantize.new(params[:id])
+      builder = "ChartCandy::Builder::#{params[:nature].camelize}".constantize.new(params[:id], params)
 
       chart.build builder
 
