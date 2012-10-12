@@ -56,7 +56,7 @@ class @ChartCandyDonut
 
   drawLabels: () ->
     @drawLabel 'label', @radiusLabel, 'outside' if @data.show_label
-    @drawLabel 'value', (@radiusLabel - @innerRadius/2.5 - 20), 'inside'
+    @drawLabel 'valuef', (@radiusLabel - @innerRadius/2.5 - 20), 'inside'
 
 
   drawLabel: (key, radius, position) ->

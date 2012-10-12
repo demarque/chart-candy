@@ -1,9 +1,8 @@
-# -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
 
 Gem::Specification.new do |s|
   s.name        = "chart-candy"
-  s.version     = "0.0.3"
+  s.version     = "0.0.4"
   s.authors     = ["Sebastien Rosa"]
   s.email       = ["sebastien@demarque.com"]
   s.extra_rdoc_files = ["LICENSE", "README.md"]
