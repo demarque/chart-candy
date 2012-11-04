@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.extra_rdoc_files = ["LICENSE", "README.md"]
   s.licenses    = ["MIT"]
   s.homepage    = "https://github.com/demarque/chart-candy"
-  s.summary     = ""
-  s.description = ""
+  s.summary     = "Chart Candy use D3.js library to quickly render AJAX charts in your Rails project. In a minimum amount of code, you should have a functional chart, styled and good to go."
+  s.description = "Chart Candy use D3.js library to quickly render AJAX charts in your Rails project. In a minimum amount of code, you should have a functional chart, styled and good to go."
 
   s.rubyforge_project = "chart-candy"
 
