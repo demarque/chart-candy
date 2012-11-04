@@ -2,14 +2,14 @@ $:.push File.expand_path("../lib", __FILE__)
 
 Gem::Specification.new do |s|
   s.name        = "chart-candy"
-  s.version     = "0.0.6"
+  s.version     = "0.0.7"
   s.authors     = ["Sebastien Rosa"]
   s.email       = ["sebastien@demarque.com"]
   s.extra_rdoc_files = ["LICENSE", "README.md"]
   s.licenses    = ["MIT"]
   s.homepage    = "https://github.com/demarque/chart-candy"
-  s.summary     = ""
-  s.description = ""
+  s.summary     = "Chart Candy use D3.js library to quickly render AJAX charts in your Rails project. In a minimum amount of code, you should have a functional chart, styled and good to go."
+  s.description = "Chart Candy use D3.js library to quickly render AJAX charts in your Rails project. In a minimum amount of code, you should have a functional chart, styled and good to go."
 
   s.rubyforge_project = "chart-candy"
 
