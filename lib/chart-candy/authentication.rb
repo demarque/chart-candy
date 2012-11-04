@@ -13,7 +13,8 @@ module ChartCandy
     end
 
     def self.tokenize(str)
-      HMAC::SHA1.hexdigest(Rails.configuration.secret_token, str.chars.sort.join.gsub('/', ''))
+      Digest::HMAC.hexdigest(str.chars.sort.join.gsub('/', ''), Rails.configuration.secret_token, Digest::SHA1)
+      #HMAC::SHA1.hexdigest(Rails.configuration.secret_token, str.chars.sort.join.gsub('/', ''))
     end
 
     def initialize(request_url, params={})

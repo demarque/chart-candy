@@ -18,7 +18,7 @@ class @ChartCandyLine
     @initSize()
 
     @loadData @holder.data('url')
-
+    @initUpdateDelay()
 
   buildPointer: (line, num) ->
     pointer = @chart.append("svg:g").attr("class", "pointer pointer-#{num}")
@@ -29,6 +29,12 @@ class @ChartCandyLine
     element = d3.select("##{@holder.attr('id')} g.pointer-#{num}")
 
     return { xData: xData, yData: yData, element: element }
+
+
+  currentStep: () ->
+    path = if @tools.find('div.holder-step select') then 'select' else 'div.select-field input'
+
+    return @tools.find('div.holder-step ' + path).val()
 
 
   drawAxis: (orientation, domain, size, nature, maxTicks) ->
@@ -160,11 +166,12 @@ class @ChartCandyLine
     @drawAxis side, @yAxis, @width, axis.nature, axis.max_ticks
 
   exportXls: () ->
-    url = @tools.find('div.holder-export-xls a.button').attr('href') + '&step=' + @tools.find('div.holder-step div.select-field input').val()
+    url = @tools.find('div.holder-export-xls a.button').attr('href') + '&step=' + @currentStep()
 
     location.href = url
 
     return false
+
 
   hidePointers: () ->
     for pointer in @pointers then pointer.element.transition().duration(200).style("opacity", 0)
@@ -182,8 +189,20 @@ class @ChartCandyLine
   initTools: () ->
     @tools = @holder.find('div.tools')
     @tools.find('div.holder-step div.select-field').bind('change', (e) => @reloadChart())
+    @tools.find('div.holder-step select').change (e) => @reloadChart()
     @tools.find('div.holder-template').bind('change', (e) => @showTemplate())
+    @tools.find('div.holder-template select').change (e) => @showTemplate()
     @tools.find('div.holder-export-xls a.button').click (e) => @exportXls()
+
+
+  initUpdateDelay: () ->
+    holder = @holder
+
+    if holder.data('update-delay')
+      delay = holder.data('update-delay') * 1000
+
+      holder.bind('update', () => @reloadChart())
+      window.setInterval((=> holder.trigger('update')), delay)
 
 
   loadChart: () ->
@@ -205,11 +224,11 @@ class @ChartCandyLine
     content += '</thead><tbody>'
     for l,i in @data.lines[0].data
       content += "<tr><td>#{l.label_x}</td>"
-      for c in @data.lines then content += "<td>#{c.data[i].y}</td>"
+      for c in @data.lines then content += "<td class=\"" + @data.axis.y.nature + "\">#{c.data[i].y}</td>"
       content += '</tr>'
     content += "</tbody><tfoot><tr>"
     content += '<td>' + @data.lines[0].total.label + '</td>'
-    for l in @data.lines then content += '<td>' + l.total.value + '</td>'
+    for l in @data.lines then content += '<td class="' + @data.axis.y.nature + '">' + l.total.value + '</td>'
     content += "</tr></tfoot></table>"
 
     @holderTable.html(content)
@@ -226,11 +245,9 @@ class @ChartCandyLine
   mainAxis: () -> if @data.axis then @data.axis else @data.axis_left
 
   reloadChart: () ->
-    step = @tools.find('div.holder-step div.select-field input').val()
-
     url = @tools.find('form').attr('action')
     url += '?' if url.indexOf('?') is -1
-    url += "&step=#{step}"
+    url += "&step=#{@currentStep()}"
 
     @holder.css({ height: @holder.height() + 'px' })
     @holder.find('div.templates').fadeOut(400, => @loadData(url))
@@ -242,7 +259,10 @@ class @ChartCandyLine
 
 
   showTemplate: () ->
-    template = @tools.find('div.holder-template div.switch-field input').val()
+    if @tools.find('div.holder-template select')
+      template = @tools.find('div.holder-template select').val()
+    else
+      template = @tools.find('div.holder-template div.switch-field input').val()
 
     if template is 'chart'
       @holderTable.fadeOut(400, => @holderChart.fadeIn(400))

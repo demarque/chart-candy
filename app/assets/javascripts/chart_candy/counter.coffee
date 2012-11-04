@@ -14,6 +14,7 @@ class @ChartCandyCounter
     else
       num
 
+
   initUpdateDelay: () ->
     holder = @holder
 
@@ -22,6 +23,7 @@ class @ChartCandyCounter
 
       holder.bind('update', () => @updateData())
       window.setInterval((=> holder.trigger('update')), delay)
+
 
   isSimilarData: (updated) -> @data.data[0].value is updated.data[0].value
 

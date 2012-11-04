@@ -17,9 +17,9 @@ module ChartCandy::Builder
     end
 
     content = []
-    content << I18n.localize(start_at, format: start_at_format)
-    content << (['month', 'year'].include?(options[:step]) ? I18n.t('date.period.to_month') : I18n.t('date.period.to'))
-    content << I18n.localize(end_at, format: end_at_format)
+    content << ChartCandy.localize(start_at, format: start_at_format)
+    content << (['month', 'year'].include?(options[:step]) ? ChartCandy.t('date.period.to_month') : ChartCandy.t('date.period.to'))
+    content << ChartCandy.localize(end_at, format: end_at_format)
 
     content[0].capitalize!
 

@@ -41,13 +41,15 @@ module ChartCandy::Helpers
     end
 
     def line(options={})
-      options.reverse_merge! tools: { export_xls: true, step: true, template: true }
+      options.reverse_merge! tools: {}
+      options[:tools].reverse_merge! export_xls: true, step: true, template: true
 
       chart 'line', options
     end
 
     def donut(options={})
-      options.reverse_merge! tools: { export_xls: true, step: false, template: true }
+      options.reverse_merge! tools: {}
+      options[:tools].reverse_merge! export_xls: true, step: false, template: true
 
       chart 'donut', options
     end
@@ -89,6 +91,22 @@ module ChartCandy::Helpers
       return content_tag(:div, content.html_safe, wrapper_options)
     end
 
+    def chart_select_tag(name, choices, selection)
+      if form_candy?
+        candy.select(name, choices, selection)
+      else
+        select_tag(name, options_for_select(choices, selection), id: nil)
+      end
+    end
+
+    def chart_switch_tag(name, choices, selection)
+      if form_candy?
+        candy.switch(name, choices, selection)
+      else
+        select_tag(name, options_for_select(choices, selection), id: nil)
+      end
+    end
+
     def chart_tools(nature, options={})
       content = form_tag(@url) do
         tools = ''
@@ -102,8 +120,16 @@ module ChartCandy::Helpers
       return content_tag(:div, content.html_safe, class: 'tools')
     end
 
+    def form_candy?
+      begin
+        (candy ? true : false)
+      rescue
+        false
+      end
+    end
+
     def t(path)
-      I18n.translate("chart_candy.#{path}")
+      ChartCandy.translate(path)
     end
 
     def title_tag
@@ -121,17 +147,17 @@ module ChartCandy::Helpers
     def tool_step
       choices = ['day', 'week', 'month'].map{ |c| [t("base.steps.#{c}"), c] }
 
-      return content_tag(:div, candy.select('step', choices, 'month'), class: 'tool holder-step')
+      return content_tag(:div, chart_select_tag('step', choices, 'month'), class: 'tool holder-step')
     end
 
     def tool_template
       choices = ['chart', 'table'].map { |c| [t("base.template.#{c}"), c] }
 
-      return content_tag(:div, candy.switch('template', choices, 'chart'), class: 'tool holder-template')
+      return content_tag(:div, chart_switch_tag('template', choices, 'chart'), class: 'tool holder-template')
     end
 
     def method_missing(*args, &block)
-      if [:candy, :content_tag, :form_tag, :link_to].include?(args.first)
+      if [:candy, :content_tag, :form_tag, :link_to, :options_for_select, :select_tag].include?(args.first)
         return @rails_helpers.send(*args, &block)
       else
         raise NoMethodError.new("undefined local variable or method '#{args.first}' for #{self.class}")

@@ -26,7 +26,7 @@ class ChartCandy::Builder::Line < ChartCandy::Builder::Base
   def add_dot_label_date(date)
     case @chart[:step]
       when 'day' then l(date, format: :date_long)
-      when 'week' then I18n.t('date.week') + ' ' + l(date, format: :date_long).strip
+      when 'week' then ChartCandy.translate('date.week') + ' ' + l(date, format: :date_long).strip
       when 'month' then l(date, format: :date_without_day).capitalize
       else l(date, format: :date_long)
     end

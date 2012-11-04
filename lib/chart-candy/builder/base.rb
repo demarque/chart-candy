@@ -30,7 +30,7 @@ class ChartCandy::Builder::Base
   def l(date, options={})
     options.reverse_merge!(format: :date_long)
 
-    return I18n.localize(date, options)
+    return ChartCandy.localize(date, options)
   end
 
   def period
@@ -49,7 +49,7 @@ class ChartCandy::Builder::Base
   def t(path, vars={})
     vars.reverse_merge! :default => ''
 
-    I18n.translate("chart_candy.#{id.gsub('-', '_')}.#{path}", vars)
+    ChartCandy.translate("#{id.gsub('-', '_')}.#{path}", vars)
   end
 
   def title
