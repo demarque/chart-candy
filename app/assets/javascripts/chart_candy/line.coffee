@@ -32,7 +32,7 @@ class @ChartCandyLine
 
 
   currentStep: () ->
-    path = if @tools.find('div.holder-step select') then 'select' else 'div.select-field input'
+    path = if @tools.find('div.holder-step select').length > 0 then 'select' else 'div.select-field input'
 
     return @tools.find('div.holder-step ' + path).val()
 
