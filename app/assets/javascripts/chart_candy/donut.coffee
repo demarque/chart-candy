@@ -5,7 +5,6 @@ class @ChartCandyDonut
   constructor: (@holder) ->
     @innerRadius = 55
     @labelMargin = 12
-    @holeLineHeight = 20
 
     @holderChart = @holder.find('div.templates div.chart')
     @holderTable = @holder.find('div.templates div.table')
@@ -31,6 +30,23 @@ class @ChartCandyDonut
 
     return "translate(" + tX + "," + tY + ")"
 
+
+  centerHoleText: (hole) ->
+    totalHeight = 0
+    heightElements = []
+
+    for content, i in @data.hole
+      elemHeight = Math.round(Number(@holderChart.find('g.hole text.text' + i).height()) * 0.66) + 10
+      totalHeight += elemHeight
+      heightElements.push elemHeight
+
+    currentHeight = totalHeight / 1.8 * -1
+
+    for content, i in @data.hole
+      currentHeight += heightElements[i]
+      hole.selectAll("text.text" + i).attr("dy", currentHeight)
+
+
   drawChart: () ->
     @holderChart.html('')
 
@@ -48,10 +64,10 @@ class @ChartCandyDonut
   drawHole: () ->
     hole = @chart.append("svg:g").attr("class", "hole").attr("transform", "translate(" + (@radius + @margins[3]) + "," + (@radius + @margins[0]) + ")")
 
-    startY = (@data.hole.length * @holeLineHeight - @holeLineHeight) / -2
-
     for content, i in @data.hole
-      hole.append("svg:text").attr("class", "label text#{i}").attr("dy", startY + (i * @holeLineHeight)).attr("text-anchor", "middle").text(content)
+      hole.append("svg:text").attr("class", "label text#{i}").attr("dy", 0).attr("text-anchor", "middle").text(content)
+
+    @centerHoleText hole
 
 
   drawLabels: () ->

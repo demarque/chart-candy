@@ -259,7 +259,7 @@ class @ChartCandyLine
 
 
   showTemplate: () ->
-    if @tools.find('div.holder-template select')
+    if @tools.find('div.holder-template select').length > 0
       template = @tools.find('div.holder-template select').val()
     else
       template = @tools.find('div.holder-template div.switch-field input').val()
