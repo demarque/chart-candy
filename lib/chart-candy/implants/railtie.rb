@@ -5,7 +5,7 @@ module ChartCandy::Implants
         require 'chart-candy/helpers'
       end
 
-      Mime::Type.register "application/vnd.ms-excel", :xls
+      Mime::Type.register "application/vnd.ms-excel", :xls if not Mime::Type.lookup_by_extension :xls
     end
   end
 end
