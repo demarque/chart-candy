@@ -38,7 +38,11 @@ class ChartCandy::Builder::Donut < ChartCandy::Builder::Base
   end
 
   def format_money(value)
-    sprintf("%0.02f", (value.to_f).round(2)).gsub('.', ',') + ' $'
+    if value > 99
+      "#{value.round} $"
+    else
+      sprintf("%0.02f", (value.to_f).round(0)).gsub('.', ',') + ' $'
+    end
   end
 
   def hole

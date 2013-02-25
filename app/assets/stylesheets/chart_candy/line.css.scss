@@ -18,7 +18,7 @@ div.chart-line{clear:both;float:left;width:100%;
       svg{overflow:visible;height:100%;width:100%;
         rect.bg{ fill:#fff; }
 
-        g.tooltip{
+        g.chart-tooltip{
           rect{border-radius:1em;fill:#fff;stroke:#ccc;}
           text{cursor:default;fill:#555;font-family:'Arial';
             tspan.x{font-size:1em;fill:#777;}

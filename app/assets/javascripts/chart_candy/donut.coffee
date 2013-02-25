@@ -86,7 +86,7 @@ class @ChartCandyDonut
 
 
 
-  drawTooltip: () -> @tooltip = @root.append("div").attr('class', 'tooltip')
+  drawTooltip: () -> @tooltip = @root.append("div").attr('class', 'chart-tooltip')
 
   fullHeight: () -> @height + @margins[0] + @margins[2]
 

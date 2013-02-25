@@ -134,7 +134,7 @@ class @ChartCandyLine
 
 
   drawTooltip: () ->
-    @tooltip = @chart.append('svg:g').attr('class', 'tooltip')
+    @tooltip = @chart.append('svg:g').attr('class', 'chart-tooltip')
     @tooltip.append('svg:rect').attr('rx', 10).attr('ry', 10)
     @tooltip.append('svg:text').text('')
 
@@ -160,7 +160,8 @@ class @ChartCandyLine
     if axis.nature is 'date'
       @yAxis = d3.time.scale().domain([min, max]).range([@height, 0])
     else
-      upperGap = (Math.round(max / ((@height * 0.75)/@tickSize)))
+      max = Math.round(max)
+      upperGap = (Math.round(max / ((@height * 0.95)/@tickSize)))
       @yAxis = d3.scale.linear().domain([min, max+upperGap]).range([@height, 5])
 
     @drawAxis side, @yAxis, @width, axis.nature, axis.max_ticks
