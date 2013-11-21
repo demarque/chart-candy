@@ -147,7 +147,7 @@ module ChartCandy::Helpers
     def tool_step
       choices = ['day', 'week', 'month'].map{ |c| [t("base.steps.#{c}"), c] }
 
-      return content_tag(:div, chart_select_tag('step', choices, 'month'), class: 'tool holder-step')
+      return content_tag(:div, chart_select_tag('step', choices, @step), class: 'tool holder-step')
     end
 
     def tool_template
