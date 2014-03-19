@@ -15,7 +15,7 @@ div.wrapper-chart{font-family:"Lucida Grande", Arial;float:left;margin:0px 0px 4
     div.holder-template{margin-left:30px;
       ul.items{margin:0px;
         li{padding:0px;}
-        li span.text{background-image:image-url("application/icon-charts.png");display:block;text-indent:-9999px;height:15px;margin:0px 15px;padding-left:0px;padding-right:0px;width:20px;}
+        li span.text{background-image:asset-url("application/icon-charts.png");display:block;text-indent:-9999px;height:15px;margin:0px 15px;padding-left:0px;padding-right:0px;width:20px;}
         li.table span.text{background-position:-100px 5px;}
         li.selected.table span.text{background-position:-100px -45px;}
       }
