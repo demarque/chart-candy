@@ -1,0 +1,36 @@
+en:
+  date:
+    abbr_day_names: [Mon, Tues, Wed, Thurs, Fri, Sat, Sun]
+    day_names: [Sunday, Monday Tuesday, Wednesday, Thursday, Friday, Saturday]
+    abbr_month_names: [~, Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sept, Oct, Nov, Dec]
+    month_names: [~, January, February, March, April, May, June, July, August, September, October, November, December]
+
+  chart_candy:
+    base:
+      steps:
+        day: Daily
+        week: Weekly
+        month: Monthly
+
+      template:
+        table: Table
+        chart: Chart
+
+      xls_export: "Export to Excel"
+
+    date:
+      period:
+        label: Period from
+        label_month: Period from
+        to: to
+        to_month: to
+      week: "Week of"
+
+  time:
+    formats:
+      chart_candy_date_without_day: "%B %Y"
+      chart_candy_date_long: "%e %B %Y"
+      chart_candy_date_long_without_year: "%e %B"
+      chart_candy_day: "%e"
+      chart_candy_long: "%e %B %Y à %H:%M"
+      chart_candy_year: "%Y"
