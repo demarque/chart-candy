@@ -2,7 +2,7 @@ $:.push File.expand_path("../lib", __FILE__)
 
 Gem::Specification.new do |s|
   s.name        = "chart-candy"
-  s.version     = "0.1.1"
+  s.version     = "0.1.2"
   s.authors     = ["Sebastien Rosa"]
   s.email       = ["sebastien@demarque.com"]
   s.extra_rdoc_files = ["LICENSE", "README.md"]
@@ -17,6 +17,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_runtime_dependency "spreadsheet"
+  s.add_runtime_dependency "railties"
   s.add_development_dependency('rake', ['>= 0.8.7'])
   s.add_development_dependency('rspec', ['>= 2.0'])
 end

@@ -1,3 +1,5 @@
+require 'openssl'
+
 module ChartCandy
   class Authentication
     def self.compact_params(original_params)
@@ -13,8 +15,7 @@ module ChartCandy
     end
 
     def self.tokenize(str)
-      Digest::HMAC.hexdigest(str.chars.sort.join.gsub('/', ''), Rails.configuration.secret_token, Digest::SHA1)
-      #HMAC::SHA1.hexdigest(Rails.configuration.secret_token, str.chars.sort.join.gsub('/', ''))
+      OpenSSL::HMAC.hexdigest(OpenSSL::Digest::SHA1.new, Rails.configuration.secret_token, str.chars.sort.join.gsub('/', ''))
     end
 
     def initialize(request_url, params={})
