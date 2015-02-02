@@ -29,8 +29,8 @@ en:
   time:
     formats:
       chart_candy_date_without_day: "%B %Y"
-      chart_candy_date_long: "%e %B %Y"
+      chart_candy_date_long: "%B %e, %Y"
       chart_candy_date_long_without_year: "%e %B"
       chart_candy_day: "%e"
-      chart_candy_long: "%e %B %Y à %H:%M"
+      chart_candy_long: "%B %d, %Y %H:%M"
       chart_candy_year: "%Y"
