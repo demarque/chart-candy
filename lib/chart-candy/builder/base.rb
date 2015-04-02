@@ -19,8 +19,8 @@ class ChartCandy::Builder::Base
     name = [title.parameterize]
     name << @from.strftime('%Y%m%d') if @from
     name << @to.strftime('%Y%m%d') if @to
-
-    return name.compact.join('-')
+    name = name.compact.join('-')
+    "#{name}.xls"
   end
 
   def id
