@@ -101,7 +101,7 @@ class ChartCandy::Builder::Line < ChartCandy::Builder::Base
   end
 
   def to_money_format(value)
-    (BigDecimal.new(value) / 100).round(2)
+    (BigDecimal.new(value || 0) / 100).round(2)
   end
 
   def tooltip=(active)
