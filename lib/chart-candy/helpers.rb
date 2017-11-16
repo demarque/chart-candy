@@ -29,8 +29,6 @@ module ChartCandy::Helpers
     end
 
     def counter(options={})
-      options.reverse_merge! update_every: 1.minute, tools: nil
-
       chart 'counter', options
     end
 
