@@ -8,6 +8,10 @@ class ChartCandy::Builder::Base
     @chart = { id: id }
     @chart[:step] = options[:step] if options[:step]
     @chart[:title] = t('title')
+
+    # Subtitles are likely to be dynamic and thus cannot be defined in translation files.
+    @chart[:subtitle] = options[:subtitle].presence
+
     @chart[:period] = ChartCandy::Builder.period(@from, @to, step: @chart[:step]) if @from
   end
 

@@ -118,6 +118,7 @@ class ChartCandy::Builder::XlsBuilder
 
   def header
     row @chart[:title], :h1
+    row @chart[:subtitle], :h2 if @chart[:subtitle]
     row @chart[:period], :h3 if @chart[:period]
 
     reset_columns_width
